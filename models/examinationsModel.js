@@ -7,18 +7,18 @@ const examinationsSchema = new mongoose.Schema(
       ref: "Patient",
       required: true,
     },
-    examinationFee: {
-      type: Number,
-      required: true,
-    },
-    paid: {
-      type: Number,
-      required: true,
-    },
-    remaining: {
-      type: Number,
-      required: true,
-    },
+    // examinationFee: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // paid: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // remaining: {
+    //   type: Number,
+    //   required: true,
+    // },
     action: {
       type: String,
       required: true,

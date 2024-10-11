@@ -6,7 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const doctorsRoutes = require("./routes/doctorsRoutes");
-
+const patientsRoutes = require("./routes/patientsRoutes");
+const examinationsRoutes = require("./routes/examinationsRoutes");
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -21,6 +22,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/doctors", doctorsRoutes);
+
+app.use("/api/patients", patientsRoutes);
+
+app.use("/api/examinations", examinationsRoutes);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
