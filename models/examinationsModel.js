@@ -7,6 +7,13 @@ const examinationsSchema = new mongoose.Schema(
       ref: "Patient",
       required: true,
     },
+    action: {
+      type: String,
+      required: true,
+    },
+    notes: { type: String },
+    date: { type: Date, required: true },
+    nextVisit: { type: Date },
     // examinationFee: {
     //   type: Number,
     //   required: true,
@@ -19,13 +26,6 @@ const examinationsSchema = new mongoose.Schema(
     //   type: Number,
     //   required: true,
     // },
-    action: {
-      type: String,
-      required: true,
-    },
-    notes: { type: String },
-    date: { type: Date, required: true },
-    nextVisit: { type: Date },
   },
   { collection: "Examinations" }
 );
