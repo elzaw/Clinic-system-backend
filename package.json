@@ -6,8 +6,6 @@
   "scripts": {
     "start": "nodemon index.js",
     "dev": "nodemon index.js"
-    // ,
-        // "postinstall": "npm install --omit=dev"
 
   },
   "author": "",
