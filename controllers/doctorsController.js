@@ -1,7 +1,7 @@
 const { Doctors } = require("../models/doctorsModel");
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 
 const createDoctor = asyncHandler(async (req, res) => {
   try {
@@ -22,7 +22,7 @@ const loginDoctor = asyncHandler(async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
     }
 
-    const isMatch = await bcrypt.compare(password, doctor.password);
+    const isMatch = await bcryptjs.compare(password, doctor.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
