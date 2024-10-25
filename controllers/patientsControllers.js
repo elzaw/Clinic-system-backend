@@ -5,15 +5,7 @@ const asyncHandler = require("express-async-handler");
 const createPatient = asyncHandler(async (req, res) => {
   try {
     const patientData = req.body;
-    const doctor = await localStorage.getItem("token");
-    if (!doctor) {
-      return res.status(401).json({ error: "Unauthenticated" });
-    }
-    const patientDataWithDoctor = {
-      doctor,
-      ...patientData,
-    };
-    const newPatient = await Patient.create(patientDataWithDoctor);
+    const newPatient = await Patient.create(patientData);
     res.status(201).json(newPatient);
   } catch (error) {
     res.status(500).json({ error: "Could not create patient", details: error });
