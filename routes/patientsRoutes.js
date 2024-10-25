@@ -18,6 +18,6 @@ router
   .patch(updatePatient)
   .delete(deletePatient);
 
-router.route("/:doctor").get(getAllPatientsByDoctorId);
+router.route("doctor/:doctor").get(getAllPatientsByDoctorId);
 
 module.exports = router;
