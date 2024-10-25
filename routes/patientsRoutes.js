@@ -10,6 +10,7 @@ const {
   getAllPatientsByDoctorId,
 } = require("../controllers/patientsControllers");
 
+router.route("/doctor/:doctor").get(getAllPatientsByDoctorId);
 router.route("/").post(createPatient).get(getAllPatients);
 
 router
@@ -17,7 +18,5 @@ router
   .get(getPatientById)
   .patch(updatePatient)
   .delete(deletePatient);
-
-router.route("doctor/:doctor").get(getAllPatientsByDoctorId);
 
 module.exports = router;
