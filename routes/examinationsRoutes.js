@@ -8,12 +8,14 @@ const {
   updateExamination,
   deleteExamination,
   getExaminationsByPatientId,
+  getExaminationsByDate,
 } = require("../controllers/examinationsController");
 
 router.route("/").get(getAllExaminations).post(createExamination);
 
 router.route("/patient/:id").get(getExaminationsByPatientId);
 
+router.route("/by-date").get(getExaminationsByDate);
 router
   .route("/:id")
   .get(getExaminationById)

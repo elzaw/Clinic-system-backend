@@ -7,6 +7,7 @@ const {
   updatePatient,
   deletePatient,
   getPatientById,
+  getAllPatientsByDoctorId,
 } = require("../controllers/patientsControllers");
 
 router.route("/").post(createPatient).get(getAllPatients);
@@ -16,5 +17,7 @@ router
   .get(getPatientById)
   .patch(updatePatient)
   .delete(deletePatient);
+
+router.route("/:doctor").get(getAllPatientsByDoctorId);
 
 module.exports = router;

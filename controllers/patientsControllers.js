@@ -24,6 +24,18 @@ const getAllPatients = asyncHandler(async (req, res) => {
   }
 });
 
+const getAllPatientsByDoctorId = asyncHandler(async (req, res) => {
+  try {
+    const doctorId = req.params.doctorId;
+    const patients = await Patient.find({ doctor: doctorId });
+    res.json(patients);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Could not retrieve patients", details: error });
+  }
+});
+
 // Read (Retrieve) Operation - Get patient by ID
 const getPatientById = asyncHandler(async (req, res) => {
   try {
@@ -79,4 +91,5 @@ module.exports = {
   updatePatient,
   deletePatient,
   getPatientById,
+  getAllPatientsByDoctorId,
 };
