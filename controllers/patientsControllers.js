@@ -1,4 +1,6 @@
+const { default: mongoose } = require("mongoose");
 const { Patient } = require("../models/patientModel");
+const { Doctors } = require("../models/doctorsModel");
 const asyncHandler = require("express-async-handler");
 
 // Create (Insert) Operation
@@ -24,17 +26,19 @@ const getAllPatients = asyncHandler(async (req, res) => {
   }
 });
 
-const getAllPatientsByDoctorId = asyncHandler(async (req, res) => {
+const getAllPatientsByDoctorId = async (req, res) => {
   try {
-    const doctorId = req.params.doctorId;
-    const patients = await Patient.find({ doctor: doctorId });
-    res.json(patients);
+    const { doctor } = req.params; // Extract the doctor ID from the request parameters
+
+    // Find patients associated with the doctor ID
+    const patients = await Patient.find({ doctor });
+
+    res.status(200).json(patients); // Send the patients as a response
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Could not retrieve patients", details: error });
+    console.error("Error fetching patients:", error); // Log the actual error
+    res.status(500).json({ message: "Server Error", error: error.message }); // Send the error message in the response
   }
-});
+};
 
 // Read (Retrieve) Operation - Get patient by ID
 const getPatientById = asyncHandler(async (req, res) => {
